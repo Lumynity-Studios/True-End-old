@@ -12,11 +12,13 @@
 - Removed Herobrine
 
 ## Bug Fixes & Technical Improvements
-- Creative decorative 'Void' block is no longer walk-through and no longer has a white version
 - Fixed “/trueend testScreen credits” not working in multiplayer (issue #8)
 - Fixed server-side credits music playback (issue #12)
   - Now plays client-side
 - Fixed BTD multiplayer visual desync where armor appeared on other players when first entering BTD (issue #10)
+- Fixed issue with any void damage putting the player in NWaD (issue #15_
+  - Fixes incompatibility with Dimensional Doors
+- Creative decorative 'Void' block is no longer walk-through and no longer has a white version
 - Players now return to their spawnpoint when leaving BTD instead of the exit portal, and are given a piece of paper with the portal’s coordinates
 - Removed Mahanhamisi from 'Art & Models' section in mod credits
   - For some reason we all thought he made some texture or model (he didn't, oops)

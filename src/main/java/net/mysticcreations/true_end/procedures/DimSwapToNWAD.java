@@ -40,7 +40,7 @@ public class DimSwapToNWAD {
         if (source == null) return;
 
         //Entry
-        if (!world.dimension().equals(BTD) && !world.dimension().equals(NWAD)) {
+        if (world.dimension().equals(Level.OVERWORLD) || world.dimension().equals(Level.NETHER)) {
             if (!(source.is(DamageTypes.IN_WALL) || source.is(DamageTypes.FELL_OUT_OF_WORLD))) return;
             if (Math.random() > Variables.randomEventChance * 2) return;
 
