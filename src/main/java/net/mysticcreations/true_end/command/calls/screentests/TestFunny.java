@@ -1,7 +1,6 @@
 package net.mysticcreations.true_end.command.calls.screentests;
 
 import net.mysticcreations.true_end.init.Sounds;
-import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundSource;
 import net.minecraftforge.network.NetworkHooks;
 
@@ -21,8 +20,6 @@ import net.mysticcreations.true_end.client.gui.inventory.Funny;
 import io.netty.buffer.Unpooled;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Objects;
-
 public class TestFunny {
     private static LevelAccessor world;
 
@@ -39,7 +36,7 @@ public class TestFunny {
 
             @Override
             public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                player.playNotifySound(Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(Sounds.VINE_BOOM.getId())), SoundSource.MASTER, 1, 1);
+                player.playNotifySound(ForgeRegistries.SOUND_EVENTS.getValue(Sounds.VINE_BOOM.getId()), SoundSource.MASTER, 1, 1);
                 return new Funny(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
             }
         }, pos);
@@ -48,7 +45,7 @@ public class TestFunny {
                 Thread.sleep(1100L);
             } catch (InterruptedException ignored) {}
             if (serverPlayer.level().getServer() != null) {
-                Objects.requireNonNull(serverPlayer.level().getServer()).execute(() -> {
+                serverPlayer.level().getServer().execute(() -> {
                     if (serverPlayer.containerMenu instanceof Funny) {
                         serverPlayer.closeContainer();
                     }

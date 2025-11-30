@@ -18,7 +18,6 @@ VictorTBH
 §l// Art & Models //
 Mochila
 JustMili
-Mahanhamisi
 
 ----=====----
 
@@ -65,15 +64,11 @@ BluSpring
 
 ----=====----
 
-§l// Collaborators //
-ShinHoa / twitch.tv/shinhoaz
-
-----=====----
-
 §l// Content Creators //
 Fireydude / youtube.com/@imfireydude
 ZarsaiVT / twitch.tv/zarsai
 One Last Time / youtube.com/@OneLastTimeMC
+Flufaye / twitch.tv/flufaye
 
 ------=========------
 

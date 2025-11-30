@@ -1,29 +1,25 @@
 package net.mysticcreations.true_end.command.calls.screentests;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mysticcreations.true_end.client.CreditsScreen;
 import net.mysticcreations.true_end.init.Sounds;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
+@OnlyIn(Dist.CLIENT)
 public class TestCredits {
-    public static void execute() {
+    public static void play() {
         Minecraft mc = Minecraft.getInstance();
-        double x = mc.player.getX();
-        double y = mc.player.getY();
-        double z = mc.player.getZ();
         mc.execute(() -> {
             mc.getSoundManager().stop();
-
-            if (mc.level != null && mc.player != null) {
-                mc.getSoundManager().stop();
-                if (mc.level != null && mc.player != null) {
-                    mc.level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(Sounds.MOD_CREDITS_MUSIC.getId())), SoundSource.MASTER, 1, 1, false);
-                }
-                mc.execute(() -> mc.setScreen(new CreditsScreen()));
-            }
+            mc.player.playNotifySound(ForgeRegistries.SOUND_EVENTS.getValue(Sounds.MOD_CREDITS_MUSIC.getId()), SoundSource.MASTER, 1f, 1f);
+            mc.setScreen(new CreditsScreen());
         });
     }
 }

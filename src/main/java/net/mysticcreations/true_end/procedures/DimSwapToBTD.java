@@ -91,6 +91,7 @@ public class DimSwapToBTD {
                             PlayerInvManager.saveInvBTD(player);
                             PlayerInvManager.clearAccessories(player);
                             player.getInventory().clearContent();
+                            player.getInventory().setChanged();
                         }
                         return;
                     }
@@ -156,6 +157,7 @@ public class DimSwapToBTD {
                             PlayerInvManager.saveInvBTD(player);
                             PlayerInvManager.clearAccessories(player);
                             player.getInventory().clearContent();
+                            player.getInventory().setChanged();
                         }
                     });
                 }

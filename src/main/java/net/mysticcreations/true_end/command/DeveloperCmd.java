@@ -2,6 +2,8 @@ package net.mysticcreations.true_end.command;
 
 import net.mysticcreations.true_end.command.calls.*;
 import net.mysticcreations.true_end.command.calls.screentests.*;
+import net.mysticcreations.true_end.init.Packets;
+import net.mysticcreations.true_end.network.packets.ShowCreditsPacket;
 import net.mysticcreations.true_end.procedures.PlayerInvManager;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +18,6 @@ import static net.mysticcreations.true_end.init.Dimensions.*;
 
 @Mod.EventBusSubscriber
 public class DeveloperCmd {
-
 	@SubscribeEvent
 	public static void registerCommand(RegisterCommandsEvent event) {
 		event.getDispatcher().register(Commands.literal("trueend")
@@ -24,7 +25,8 @@ public class DeveloperCmd {
 				.then(Commands.literal("credits")
 					.requires(s -> s.hasPermission(4))
 					.executes(arguments -> {
-						TestCredits.execute();
+                        ServerPlayer player = arguments.getSource().getPlayer();
+                        Packets.sendToPlayer(new ShowCreditsPacket(), player);
 						return 0;
 					})).then(Commands.literal("funny")
 					.executes(arguments -> {

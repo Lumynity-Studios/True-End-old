@@ -1,6 +1,8 @@
 package net.mysticcreations.true_end.procedures;
 
 import io.wispforest.accessories.api.AccessoriesCapability;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.mysticcreations.true_end.TrueEnd;
 import net.mysticcreations.true_end.init.Items;
 import net.mysticcreations.true_end.network.Variables;
@@ -254,15 +256,36 @@ public class PlayerInvManager {
         if (!(event.getFrom().equals(BTD) && event.getTo().equals(Level.OVERWORLD))) return;
         if (!Variables.clearDreamItems) return;
 
+        int pExitX = (int) player.getX();
+        int pExitY = (int) player.getY();
+        int pExitZ = (int) player.getZ();
+
         player.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(data -> {
             if (data.hasBeenBeyond() && !data.hasLeftBtd()) {
                 player.getInventory().clearContent();
                 clearAccessories(player);
                 restoreInvWithChance(player);
 
+                //Changes player's spawn point to world spawn
+                Level wSpawn = player.server.getLevel(Level.OVERWORLD);
+                player.setRespawnPosition(Level.OVERWORLD, wSpawn.getSharedSpawnPos(), wSpawn.getSharedSpawnAngle(), true, false);
+
+                //Teleport player to spawn
+                player.teleportTo(player.serverLevel(),
+                    wSpawn.getSharedSpawnPos().getX(),
+                    wSpawn.getSharedSpawnPos().getY(),
+                    wSpawn.getSharedSpawnPos().getZ(),
+                    player.getYRot(), player.getXRot());
+
+                //Give items
                 ItemStack cube = new ItemStack(Items.MYSTERIOUS_CUBE.get());
                 cube.setCount(1);
                 ItemHandlerHelper.giveItemToPlayer(player, cube);
+
+                ItemStack paper = new ItemStack(net.minecraft.world.item.Items.PAPER);
+                paper.setCount(1);
+                paper.setHoverName(Component.literal(pExitX+"/"+pExitY+"/"+pExitZ).withStyle(s -> s.withItalic(false)));
+                ItemHandlerHelper.giveItemToPlayer(player, paper);
 
                 data.setLeftBtd(true);
             }

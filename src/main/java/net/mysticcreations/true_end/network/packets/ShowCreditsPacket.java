@@ -12,6 +12,12 @@ public class ShowCreditsPacket {
     public ShowCreditsPacket(FriendlyByteBuf buf) {}
 
     public void handle(Supplier<NetworkEvent.Context> context) {
-        TestCredits.execute();
+        if (context.get().getDirection().getReceptionSide().isClient()) {
+            context.get().enqueueWork(() -> {
+                TestCredits.play();
+            });
+        }
+
+        context.get().setPacketHandled(true);
     }
 }

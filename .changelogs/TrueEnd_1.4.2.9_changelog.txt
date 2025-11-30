@@ -1,0 +1,27 @@
+**FABRIC PORT IS ON ITS WAY!** (JustMili posted a video on YT, go check it out)
+
+## Events & Interactions
+- Added 'what are you' ChatReply for entity interaction
+- Added 'sup' as variant of 'hello' ChatReply for entity interaction
+- Rewritten all of Random ChatReplies to be more lore accurate
+- NoVoidDamage event now only applies to players and is toggled randomly at world load.
+
+## Removed
+- Removed 'Collaborators' section from mod credits
+  - No one in that list was even related to the project
+- Removed Herobrine
+
+## Bug Fixes & Technical Improvements
+- Creative decorative 'Void' block is no longer walk-through and no longer has a white version
+- Fixed “/trueend testScreen credits” not working in multiplayer (issue #8)
+- Fixed server-side credits music playback (issue #12)
+  - Now plays client-side
+- Fixed BTD multiplayer visual desync where armor appeared on other players when first entering BTD (issue #10)
+- Players now return to their spawnpoint when leaving BTD instead of the exit portal, and are given a piece of paper with the portal’s coordinates
+- Removed Mahanhamisi from 'Art & Models' section in mod credits
+  - For some reason we all thought he made some texture or model (he didn't, oops)
+- Fixed NoCooldown in BTD making attacks with Better Combat hilariously fast
+
+## Known Bugs
+- Seeping Reality flashing screen and dev 'testScreen funny' screen display under JEI/REI/EMI's block list
+Any bugs or requests of mod compatibility, please report to our Discord server!
