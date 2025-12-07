@@ -24,7 +24,6 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static net.mysticcreations.true_end.init.Dimensions.BTD;
 import static net.mysticcreations.true_end.init.Dimensions.NWAD;
 
 @Mod.EventBusSubscriber
@@ -69,11 +68,6 @@ public class DimSwapToNWAD {
             player.resetFallDistance();
             player.getFoodData().setFoodLevel(20);
             player.getFoodData().setSaturation(10.0f);
-//            player.setArrowCount(0);
-//            player.connection.send(new ClientboundSetEntityDataPacket(player.getId(),
-//                Objects.requireNonNull(player.getEntityData().getNonDefaultValues())));
-//            player.setDeltaMovement(0.0, 0.0, 0.0);
-//            player.connection.send(new ClientboundSetEntityMotionPacket(player));
 
             BlockPos respawnPos = player.getRespawnPosition();
             ResourceKey<Level> respawnDim = player.getRespawnDimension();
