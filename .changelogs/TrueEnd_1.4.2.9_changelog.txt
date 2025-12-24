@@ -1,4 +1,4 @@
-**FABRIC PORT IS ON ITS WAY!** (JustMili posted a video on YT, go check it out)
+**FABRIC PORT IS ON ITS WAY!** (Merry Christmas)
 
 ## Events & Interactions
 - Added 'what are you' ChatReply for entity interaction
