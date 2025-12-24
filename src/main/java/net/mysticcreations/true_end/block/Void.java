@@ -15,12 +15,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Void extends Block {
-
     public Void() {
         super(BlockBehaviour.Properties.of().sound(SoundType.EMPTY)
-                .strength(-1.0f, -1.0f)
-                .noCollission().hasPostProcess((bs, br, bp) -> true)
-                .lightLevel(s -> 1).emissiveRendering((bs, br, bp) -> true)
+            .strength(-1.0f, -1.0f)
+            .hasPostProcess((bs, br, bp) -> true)
+            .lightLevel(s -> 1)
+            .emissiveRendering((bs, br, bp) -> true)
         );
     }
 

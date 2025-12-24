@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "true_end:block/old_obsidian"
+    "all": "true_end:block/void"
   },
   "render_type": "solid"
 }

@@ -1,13 +1,5 @@
 {
-  "parent": "true_end:block/void/black",
-  "overrides": [
-    {
-      "predicate": {
-        "true_end:type": 1.0
-      },
-      "model": "true_end:block/void/white"
-    }
-  ],
+  "parent": "true_end:block/void",
   "display": {
     "thirdperson": {
       "rotation": [
