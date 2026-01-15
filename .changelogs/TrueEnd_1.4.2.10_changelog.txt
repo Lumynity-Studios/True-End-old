@@ -1,0 +1,19 @@
+**FABRIC PORT IS ON ITS WAY!**
+
+## Localization
+- Corrected `pt_br.json`
+- Added `pt_pt.json`
+
+## Removed
+- Removed Herobrine
+
+## Bug Fixes & Technical Improvements
+- Changed `.getGameTime()` to `.getDayTime` for time-dependant events, so it's based on the day counter and not actual time played
+
+## Known Bugs
+-Seeping Reality flashing screen and dev 'testScreen funny' screen display under JEI/REI/EMI's block list
+
+Any bugs or requests of mod compatibility, please report to our Discord server!
+
+### Dev stuff
+- Added some comments for future reference

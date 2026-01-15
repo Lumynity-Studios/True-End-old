@@ -35,11 +35,11 @@ public class SpawnStalking {
         if (level.isClientSide() || !(level instanceof ServerLevel world)) return;
         if (Variables.MapVariables.get(world).isUnknownInWorld()) return;
 
-        if (world.getGameTime() % TICK_INTERVAL != 0) return;
+        if (world.getDayTime() % TICK_INTERVAL != 0) return;
         if (world.dimension() == Level.END) return;
         if (!Variables.doRandomEvents) return;
 
-        long daysPlayed = world.getGameTime() / 24000;
+        long daysPlayed = world.getDayTime() / 24000;
         if (daysPlayed < 10) return;
         double difficultyMultiplier = switch (world.getDifficulty()) {
             case PEACEFUL -> 3.0;

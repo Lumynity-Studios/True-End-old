@@ -32,7 +32,7 @@ public class MobStare {
         LevelAccessor world = event.level;
         if (!(world instanceof ServerLevel server)) return;
 
-        long worldTick = server.getGameTime();
+        long worldTick = server.getDayTime();
         if (worldTick < lastEventTick + EVENT_COOLDOWN) {
             updateStare(server);
             return;
@@ -40,7 +40,7 @@ public class MobStare {
         if (Variables.doRandomEvents) {
             if (stareMap.isEmpty() && RANDOM.nextDouble() < Variables.randomEventChance) {
                 lastEventTick = worldTick;
-                TrueEnd.LOGGER.info("[MobStare] Starting stare event");
+                TrueEnd.LOGGER.info("[MobStare] Starting stare event"); //I fr don't remember if this even works
 
                 List<ServerPlayer> players = server.players();
                 int maxDuration = 0;

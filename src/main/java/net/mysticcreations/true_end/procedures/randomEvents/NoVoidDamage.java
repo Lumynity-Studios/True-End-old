@@ -18,11 +18,7 @@ public class NoVoidDamage {
     @SubscribeEvent
     public static void onPlayerJoin(LevelEvent.Load event) {
         if (!Variables.doRandomEvents) return;
-        if (Math.random() < 0.5) {
-            eventActive = true;
-        } else {
-            eventActive = false;
-        }
+        eventActive = Math.random() < 0.5;
     }
     @SubscribeEvent
     public static void onEntityDamaged(LivingHurtEvent event) {

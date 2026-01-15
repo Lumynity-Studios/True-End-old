@@ -24,14 +24,14 @@ public class SpawnShortAttack {
         Level level = event.player.level();
         if (level.isClientSide() || !(level instanceof ServerLevel world)) return;
         if (Variables.MapVariables.get(world).isUnknownInWorld()) return;
-        if (world.getGameTime() % 1200L != 0) return; //Tick Interval
+        if (world.getDayTime() % 1200L != 0) return; //Tick Interval
         if (world.dimension() == Level.END) return;
 
         if (!Variables.doRandomEvents) return;
         if (!(world.random.nextDouble() < (Variables.entitySpawnChance / 50))) return;
         if (world.getDifficulty() == Difficulty.PEACEFUL) return;
 
-        long daysPlayed = world.getGameTime() / 24000;
+        long daysPlayed = world.getDayTime() / 24000;
         if (daysPlayed < 24) return;
 
         List<ServerPlayer> players = world.players();
