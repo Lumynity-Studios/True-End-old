@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.events;
+package net.mysticcreations.true_end.mechanics.logic;
 
 import net.mysticcreations.true_end.config.Config;
 import net.mysticcreations.true_end.init.Packets;

@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.randomEvents;
+package net.mysticcreations.true_end.mechanics.randomEvents;
 
 import net.mysticcreations.true_end.TrueEnd;
 import net.mysticcreations.true_end.init.Blocks;
@@ -14,12 +14,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 
-import static net.mysticcreations.true_end.init.Dimensions.BTD;
 import static net.minecraft.world.level.block.Blocks.*;
 
 import static net.mysticcreations.true_end.init.Dimensions.NWAD;
-import static net.mysticcreations.true_end.procedures.DimSwapToBTD.BlockPosRandomX;
-import static net.mysticcreations.true_end.procedures.DimSwapToBTD.BlockPosRandomZ;
+import static net.mysticcreations.true_end.mechanics.DimSwapToBTD.BlockPosRandomX;
+import static net.mysticcreations.true_end.mechanics.DimSwapToBTD.BlockPosRandomZ;
 
 @Mod.EventBusSubscriber
 public class SoundPlayer {

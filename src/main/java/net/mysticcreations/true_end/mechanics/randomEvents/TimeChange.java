@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.randomEvents;
+package net.mysticcreations.true_end.mechanics.randomEvents;
 
 import net.mysticcreations.true_end.network.Variables;
 import net.minecraft.server.level.ServerLevel;

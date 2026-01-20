@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.alphaFeatures;
+package net.mysticcreations.true_end.mechanics.alphaFeatures;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.common.Mod;

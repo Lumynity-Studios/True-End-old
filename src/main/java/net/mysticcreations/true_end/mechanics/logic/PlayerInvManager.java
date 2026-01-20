@@ -1,7 +1,6 @@
-package net.mysticcreations.true_end.procedures;
+package net.mysticcreations.true_end.mechanics.logic;
 
 import io.wispforest.accessories.api.AccessoriesCapability;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.mysticcreations.true_end.TrueEnd;
 import net.mysticcreations.true_end.init.Items;

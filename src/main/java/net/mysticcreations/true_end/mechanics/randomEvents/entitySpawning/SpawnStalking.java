@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.randomEvents.entitySpawning;
+package net.mysticcreations.true_end.mechanics.randomEvents.entitySpawning;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import net.mysticcreations.true_end.entity.Unknown;
 import net.mysticcreations.true_end.init.Entities;
 import net.mysticcreations.true_end.network.Variables;
 
-import net.mysticcreations.true_end.procedures.advancement.NotAlone;
+import net.mysticcreations.true_end.mechanics.logic.NotAlone;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;

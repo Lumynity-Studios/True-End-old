@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.advancement;
+package net.mysticcreations.true_end.mechanics.logic;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Pig;

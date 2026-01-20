@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.advancement;
+package net.mysticcreations.true_end.mechanics.logic;
 
 import net.mysticcreations.true_end.network.packets.InvOpenAdvPacket;
 import net.minecraft.client.Minecraft;

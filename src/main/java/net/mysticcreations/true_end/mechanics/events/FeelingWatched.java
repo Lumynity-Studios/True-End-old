@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.events;
+package net.mysticcreations.true_end.mechanics.events;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.events;
+package net.mysticcreations.true_end.mechanics.logic;
 
 import net.mysticcreations.true_end.init.Dimensions;
 import net.minecraftforge.fml.common.Mod;

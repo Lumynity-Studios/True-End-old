@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.events;
+package net.mysticcreations.true_end.mechanics.events;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -7,7 +7,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.mysticcreations.true_end.TrueEnd;
 import net.mysticcreations.true_end.network.Variables;
-import net.mysticcreations.true_end.procedures.randomEvents.SoundPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -22,9 +21,7 @@ import java.util.Locale;
 import java.util.Random;
 
 import static net.mysticcreations.true_end.init.Dimensions.BTD;
-import static net.mysticcreations.true_end.procedures.DimSwapToBTD.BlockPosRandomX;
-import static net.mysticcreations.true_end.procedures.DimSwapToBTD.BlockPosRandomZ;
-import static net.mysticcreations.true_end.procedures.randomEvents.TimeChange.*;
+import static net.mysticcreations.true_end.mechanics.randomEvents.TimeChange.*;
 
 @Mod.EventBusSubscriber
 public class ChatReplies {

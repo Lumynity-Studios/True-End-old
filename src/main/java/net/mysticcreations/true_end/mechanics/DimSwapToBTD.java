@@ -1,6 +1,7 @@
-package net.mysticcreations.true_end.procedures;
+package net.mysticcreations.true_end.mechanics;
 
 import com.mojang.datafixers.util.Pair;
+import net.mysticcreations.true_end.mechanics.logic.PlayerInvManager;
 import net.mysticcreations.true_end.network.Variables;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;

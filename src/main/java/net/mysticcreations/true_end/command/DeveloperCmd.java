@@ -4,7 +4,7 @@ import net.mysticcreations.true_end.command.calls.*;
 import net.mysticcreations.true_end.command.calls.screentests.*;
 import net.mysticcreations.true_end.init.Packets;
 import net.mysticcreations.true_end.network.packets.ShowCreditsPacket;
-import net.mysticcreations.true_end.procedures.PlayerInvManager;
+import net.mysticcreations.true_end.mechanics.logic.PlayerInvManager;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

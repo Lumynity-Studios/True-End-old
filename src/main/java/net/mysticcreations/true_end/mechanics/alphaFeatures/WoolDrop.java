@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.alphaFeatures;
+package net.mysticcreations.true_end.mechanics.alphaFeatures;
 
 import net.mysticcreations.true_end.TrueEnd;
 import net.minecraft.nbt.CompoundTag;

@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.events;
+package net.mysticcreations.true_end.mechanics.events;
 
 import net.mysticcreations.true_end.network.Variables;
 import net.minecraft.core.BlockPos;

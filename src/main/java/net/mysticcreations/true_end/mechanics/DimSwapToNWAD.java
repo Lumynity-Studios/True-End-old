@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures;
+package net.mysticcreations.true_end.mechanics;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -7,6 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.mysticcreations.true_end.TrueEnd;
+import net.mysticcreations.true_end.mechanics.logic.PlayerInvManager;
 import net.mysticcreations.true_end.network.Variables;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;

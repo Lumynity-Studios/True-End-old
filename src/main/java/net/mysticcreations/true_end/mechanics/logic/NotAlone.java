@@ -1,4 +1,4 @@
-package net.mysticcreations.true_end.procedures.advancement;
+package net.mysticcreations.true_end.mechanics.logic;
 
 import net.mysticcreations.true_end.network.Variables;
 import net.minecraft.advancements.Advancement;

@@ -1,0 +1,25 @@
+**FABRIC PORT IS ON ITS WAY!**
+
+## Localization
+- Added `de_de.json` (German)
+
+## Removed
+- Removed Herobrine
+
+## Known Bugs
+-Seeping Reality flashing screen and dev 'testScreen funny' screen display under JEI/REI/EMI's block list
+
+Any bugs or requests of mod compatibility, please report to our Discord server!
+
+<hr>
+
+### Dev stuff
+- Renamed and moved some internal stuff
+  - procedures -> mechanics
+  - mechanics\advancements\* -> mechanics\logic\...
+  - mechanics\events\PlayCredits.java -> mechanics\logic\...
+  - mechanics\events\NotAlone.java -> mechanics\logic\...
+  - mechanics\events\FoodLvlReset.java -> mechanics\logic\...
+  - mechanics\PlayerInvManager.java -> mechanics\logic\...
+
+Yeah that's.. that's everything.
