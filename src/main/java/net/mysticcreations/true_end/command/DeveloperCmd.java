@@ -64,7 +64,7 @@ public class DeveloperCmd {
 					Level world = arguments.getSource().getUnsidedLevel();
 					Entity entity = arguments.getSource().getEntity();
 
-					BTDTest.execute(world, entity);
+					BTDTest.execute(entity);
 					return 0;
 				}))			.then(Commands.literal("clearAccessories")
 				.requires(s -> s.hasPermission(4))

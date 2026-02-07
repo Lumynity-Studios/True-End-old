@@ -38,7 +38,7 @@ public class ChatReplies {
             hardcodedReplies(world, msg, player);
         });
     }
-    private static void sendChatReply(LevelAccessor world, String msg, Integer delay) {
+    private static void sendChatReply(LevelAccessor world, String msg, int delay) {
         if (!world.isClientSide() && world.getServer() != null) {
             TrueEnd.wait(delay, () -> {
                 MinecraftServer server = world.getServer();
