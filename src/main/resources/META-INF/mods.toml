@@ -17,6 +17,12 @@ description="But it was all a dream"
     versionRange="[${minecraftVersion}]"
     ordering="AFTER"
     side="BOTH"
+[[dependencies.true_end]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47.4.5,)"
+    ordering="AFTER"
+    side="BOTH"
 
 [[dependencies.true_end]]
     modId="terrablender"
