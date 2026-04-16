@@ -1,22 +1,15 @@
 modLoader="javafml"
-loaderVersion="[47,)"
+loaderVersion="[1,)"
 license="MIT"
 
 [[mods]]
 modId="true_end"
 version="${modVersion}"
 displayName="True End"
-displayURL="""
-
-https://modrinth.com/mod/true_end
-https://www.curseforge.com/minecraft/mc-mods/true-end-cf
-"""
+displayURL="https://modrinth.com/mod/true_end"
 logoFile="icon.png"
-authors="Mystic Creations Team"
+authors="Lumynity Studios"
 description="But it was all a dream"
-
-[[mixin]]
-mixinClasses = ["net.mysticcreations.true_end.mixin.Mixins"]
 
 [[dependencies.true_end]]
     modId="minecraft"

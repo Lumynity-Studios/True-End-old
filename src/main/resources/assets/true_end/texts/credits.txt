@@ -1,4 +1,4 @@
-§f-====-- By §5Mystic Creations Team §f--====-
+§f-====-- By §5Lumynity Studios §f--====-
 
 
 Big thanks to everyone who has worked on and supported this project.
@@ -11,7 +11,6 @@ It would not be possible without you all <3
 JustMili
 Eetgeenappels
 Mahanhamisi
-VictorTBH
 
 ----=====----
 
@@ -35,13 +34,11 @@ RoroTheWizard
 
 §l// Writing //
 JustMili
-VictorTBH
-Mahanhamisi
 
 ----=====----
 
 §l// Translators //
-JustMili - English (US)
+JustMili - English (US/UK)
 GaelFM - Spanish (ES)
 Mary - Portuguese (BR)
 John Roboeye - Russian
@@ -54,8 +51,8 @@ Raze7th & Hxplume - French
 ----=====----
 
 §l// Contributors //
-Notmas
 BluSpring
+Notmas
 
 ----=====----
 
@@ -67,7 +64,6 @@ BluSpring
 §l// Content Creators //
 Fireydude / youtube.com/@imfireydude
 ZarsaiVT / twitch.tv/zarsai
-One Last Time / youtube.com/@OneLastTimeMC
 Flufaye / twitch.tv/flufaye
 
 ------=========------

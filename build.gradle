@@ -19,7 +19,7 @@ repositories {
 }
 
 version = "${modVersion}_${loaderType}-${minecraftVersion}"
-group = "net.mysticcreations.true_end"
+group = "net.lumynity.true_end"
 archivesBaseName = "TrueEnd"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -97,6 +97,6 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 mixin {
-    add sourceSets.main, "refmap.true_end.json"
-    config "mixins.true_end.json"
+    add sourceSets.main, "true_end.refmap.json"
+    config "true_end.mixins.json"
 }

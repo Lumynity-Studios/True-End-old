@@ -13,6 +13,9 @@ The same voices as in the end poem will address the player in chat, surprised ab
 
 Wake up, *Player.*
 
+## Devs Say
+We recommend going through the codebase to discover many small and big easter eggs and hidden features!
+
 <hr>
 
 ["what if minecraft was just a dream?" - Video by Fireydude](https://www.youtube.com/shorts/R-DQTwzGJao)
