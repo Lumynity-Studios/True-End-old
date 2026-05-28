@@ -3,7 +3,7 @@ package net.lumynity.true_end.mechanics.randomEvents.entitySpawning;
 import java.util.List;
 
 import net.lumynity.true_end.TrueEnd;
-import net.lumynity.true_end.entity.Unknown;
+import net.lumynity.true_end.content.entity.Unknown;
 import net.lumynity.true_end.registries.Entities;
 import net.lumynity.true_end.network.Variables;
 

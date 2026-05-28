@@ -1,8 +1,8 @@
 package net.lumynity.true_end.registries;
 
 import net.lumynity.true_end.TrueEnd;
-import net.lumynity.true_end.item.DreamersCompass;
-import net.lumynity.true_end.item.MysteriousCube;
+import net.lumynity.true_end.content.item.DreamersCompass;
+import net.lumynity.true_end.content.item.MysteriousCube;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.Item;

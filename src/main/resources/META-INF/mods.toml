@@ -20,7 +20,7 @@ description="But it was all a dream"
 [[dependencies.true_end]]
     modId="forge"
     mandatory=true
-    versionRange="[47.4.5,)"
+    versionRange="[47.4.20,)"
     ordering="AFTER"
     side="BOTH"
 

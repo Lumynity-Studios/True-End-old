@@ -1,7 +1,7 @@
 package net.lumynity.true_end.client;
 
 import net.lumynity.true_end.TrueEnd;
-import net.lumynity.true_end.entity.renderer.UnknownEntityRenderer;
+import net.lumynity.true_end.content.entity.renderer.UnknownEntityRenderer;
 import net.lumynity.true_end.registries.Blocks;
 import net.lumynity.true_end.registries.Items;
 import net.minecraft.client.renderer.item.ItemProperties;

@@ -1,7 +1,7 @@
 package net.lumynity.true_end.mechanics.events;
 
 import net.lumynity.true_end.TrueEnd;
-import net.lumynity.true_end.command.calls.screentests.TestBlackOverlay;
+import net.lumynity.true_end.content.command.calls.screentests.TestBlackOverlay;
 import net.lumynity.true_end.registries.Biomes;
 import net.lumynity.true_end.network.Variables;
 import net.minecraft.core.BlockPos;

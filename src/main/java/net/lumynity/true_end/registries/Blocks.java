@@ -1,7 +1,7 @@
 package net.lumynity.true_end.registries;
 
-import net.lumynity.true_end.block.*;
-import net.lumynity.true_end.block.Void;
+import net.lumynity.true_end.content.block.*;
+import net.lumynity.true_end.content.block.Void;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;

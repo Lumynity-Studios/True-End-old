@@ -1,6 +1,6 @@
 package net.lumynity.true_end.network.packets;
 
-import net.lumynity.true_end.command.calls.screentests.TestCredits;
+import net.lumynity.true_end.content.command.calls.screentests.TestCredits;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
