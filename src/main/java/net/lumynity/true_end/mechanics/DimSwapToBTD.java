@@ -45,7 +45,6 @@ import static net.lumynity.true_end.registries.Dimensions.BTD;
 @Mod.EventBusSubscriber
 public class DimSwapToBTD {
     private static final Map<ServerPlayer, Boolean> HAS_PROCESSED = new HashMap<>();
-    private static final Set<UUID> PENDING_TRANSFER = new HashSet<>();
     private static final BlockPos ABSOLUTE_FALLBACK_POS = new BlockPos(0, 120, 12550832);
     public static final int HOUSE_PLATEAU_WIDTH = 9;
     public static final int HOUSE_PLATEAU_LENGTH = 7;
@@ -63,28 +62,12 @@ public class DimSwapToBTD {
         // ANY CHANGE MAY RESULT IN THE WHOLE THING JUST SHITTING ITSELF
         Advancement advancement = event.getAdvancement();
         Entity entity = event.getEntity();
-
-        advancement = null; // for testing
-
         if (advancement == null || advancement.getId() == null) {
-            TrueEnd.LOGGER.error(
-                "[TrueEnd] AdvancementEvent fired with a null advancement or null advancement ID. "+
-                    "This is likely caused by another mod or datapack firing a synthetic/anonymous advancement event. "+
-                    "This is NOT a True End bug. Entity involved: {}",
-                entity != null ? entity.getName().getString() : "unknown (No, not our Unknown entity)"
-            );
-            if (entity instanceof ServerPlayer player) {
-                player.sendSystemMessage(Component.literal(
-                    "§c[True End] Something went wrong during a dimension transfer check.\n"+
-                        "This is likely a mod conflict, not a True End bug.\n"+
-                        "Check the latest.log for details."
-                ));
-            }
-            return;
+            entity.sendSystemMessage(Component.literal("§c[True End] Something went wrong while executing transfer to Beyond The Dream."));
         }
-
         ResourceLocation advancementId = advancement.getId();
         if (!(entity instanceof ServerPlayer player)) return;
+        // TODO: FIX - ADVANCEMENT KEEPS RETURNING NULL
 
         if (advancementId.equals(ResourceLocation.parse("true_end:stop_dreaming"))) {
             if (HAS_PROCESSED.getOrDefault(player, false)) return;
