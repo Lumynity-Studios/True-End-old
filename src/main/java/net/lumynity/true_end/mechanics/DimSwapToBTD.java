@@ -51,6 +51,22 @@ public class DimSwapToBTD {
     public static final int BlockPosRandomY = 128+(int) (Math.random() * ((256-128)+1));
     public static final int BlockPosRandomZ = 16+(int) (Math.random() * ((48-16)+1));
 
+    // Half-assed work-around, causes desync and shoves you back into BTD if you go through the exist portal a 2nd time and crashes the game if you die
+    @SubscribeEvent
+    public static void onPlayerClone(PlayerEvent.Clone event) {
+        if (!event.isWasDeath()) {
+            ServerPlayer oldPlayer = (ServerPlayer) event.getOriginal();
+
+            if (oldPlayer.level().dimension() == Level.END) {
+                ServerPlayer newPlayer = (ServerPlayer) event.getEntity();
+
+                PlayerEvent.PlayerChangedDimensionEvent simulatedEvent =
+                    new PlayerEvent.PlayerChangedDimensionEvent(newPlayer, Level.END, Level.OVERWORLD);
+                onChangeDimension(simulatedEvent);
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
         // DEAR DEVELOPER, WHEN WE WROTE THIS CODE ONLY WE AND GOD KNEW HOW IT WORKED
