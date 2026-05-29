@@ -1,9 +1,9 @@
 package net.lumynity.true_end.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.minecraft.world.level.levelgen.synth.PerlinNoise;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import net.minecraft.world.level.levelgen.synth.PerlinNoise;
 
 @Mixin(value = PerlinNoise.class, priority = 2048)
 public class Farlands {

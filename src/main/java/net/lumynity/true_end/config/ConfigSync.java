@@ -2,9 +2,9 @@ package net.lumynity.true_end.config;
 
 
 import net.lumynity.true_end.TrueEnd;
-import net.lumynity.true_end.registries.Packets;
 import net.lumynity.true_end.network.Variables;
 import net.lumynity.true_end.network.packets.UpdateClientConfigPacket;
+import net.lumynity.true_end.registries.Packets;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

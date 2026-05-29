@@ -2,9 +2,9 @@ package net.lumynity.true_end.config;
 
 import net.lumynity.true_end.TrueEnd;
 import net.lumynity.true_end.config.serializer.GsonSerializer;
-import net.lumynity.true_end.registries.Packets;
 import net.lumynity.true_end.network.Variables;
 import net.lumynity.true_end.network.packets.UpdateClientConfigPacket;
+import net.lumynity.true_end.registries.Packets;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

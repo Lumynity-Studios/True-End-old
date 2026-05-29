@@ -1,9 +1,9 @@
 package net.lumynity.true_end.content.command.calls;
 
 import net.lumynity.true_end.network.Variables;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.LevelAccessor;
 
 public class PrintVars {

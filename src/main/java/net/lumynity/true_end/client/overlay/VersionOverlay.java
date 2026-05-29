@@ -13,8 +13,8 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
-import static net.lumynity.true_end.registries.Dimensions.BTD;
 import static net.lumynity.true_end.TrueEnd.MODID;
+import static net.lumynity.true_end.registries.Dimensions.BTD;
 
 @Mod.EventBusSubscriber(modid = MODID, value = Dist.CLIENT)
 public class VersionOverlay {

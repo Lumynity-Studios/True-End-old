@@ -1,9 +1,9 @@
 package net.lumynity.true_end.mechanics.alphaFeatures;
 
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import static net.lumynity.true_end.registries.Dimensions.BTD;
 

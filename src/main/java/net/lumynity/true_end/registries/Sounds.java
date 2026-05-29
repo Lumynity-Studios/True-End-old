@@ -1,11 +1,11 @@
 package net.lumynity.true_end.registries;
 
-import net.minecraft.sounds.SoundEvent;
+import net.lumynity.true_end.TrueEnd;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.lumynity.true_end.TrueEnd;
 
 public class Sounds {
     public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, TrueEnd.MODID);

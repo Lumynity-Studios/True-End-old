@@ -1,5 +1,9 @@
 package net.lumynity.true_end;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import net.lumynity.true_end.content.entity.Unknown;
+import net.lumynity.true_end.content.world.biome.seeping_reality.SeepingForestRegion;
 import net.lumynity.true_end.registries.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -14,15 +18,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.util.thread.SidedThreadGroups;
-import net.lumynity.true_end.content.entity.Unknown;
-import net.lumynity.true_end.content.world.biome.seeping_reality.SeepingForestRegion;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
-import terrablender.api.Regions;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import terrablender.api.Regions;
+
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;

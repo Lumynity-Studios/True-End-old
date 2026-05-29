@@ -1,24 +1,23 @@
 package net.lumynity.true_end.mechanics.randomEvents;
 
 import net.lumynity.true_end.TrueEnd;
-import net.lumynity.true_end.registries.Blocks;
 import net.lumynity.true_end.network.Variables;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraft.world.level.Level;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.resources.ResourceLocation;
+import net.lumynity.true_end.registries.Blocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import static net.minecraft.world.level.block.Blocks.*;
-
-import static net.lumynity.true_end.registries.Dimensions.NWAD;
 import static net.lumynity.true_end.mechanics.DimSwapToBTD.BlockPosRandomX;
 import static net.lumynity.true_end.mechanics.DimSwapToBTD.BlockPosRandomZ;
+import static net.lumynity.true_end.registries.Dimensions.NWAD;
+import static net.minecraft.world.level.block.Blocks.*;
 
 @Mod.EventBusSubscriber
 public class SoundPlayer {

@@ -1,13 +1,10 @@
 package net.lumynity.true_end.mechanics.randomEvents.entitySpawning;
 
-import java.util.List;
-
 import net.lumynity.true_end.TrueEnd;
 import net.lumynity.true_end.content.entity.Unknown;
-import net.lumynity.true_end.registries.Entities;
-import net.lumynity.true_end.network.Variables;
-
 import net.lumynity.true_end.mechanics.logic.NotAlone;
+import net.lumynity.true_end.network.Variables;
+import net.lumynity.true_end.registries.Entities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -21,6 +18,8 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber
 public class SpawnStalking {

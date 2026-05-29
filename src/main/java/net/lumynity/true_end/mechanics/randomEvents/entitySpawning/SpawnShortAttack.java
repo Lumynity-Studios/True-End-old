@@ -1,9 +1,9 @@
 package net.lumynity.true_end.mechanics.randomEvents.entitySpawning;
 
 import net.lumynity.true_end.content.entity.Unknown;
-import net.lumynity.true_end.registries.Entities;
-import net.lumynity.true_end.network.Variables;
 import net.lumynity.true_end.mechanics.logic.NotAlone;
+import net.lumynity.true_end.network.Variables;
+import net.lumynity.true_end.registries.Entities;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Difficulty;

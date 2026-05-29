@@ -2,9 +2,9 @@ package net.lumynity.true_end.registries;
 
 import net.lumynity.true_end.TrueEnd;
 import net.lumynity.true_end.content.entity.Unknown;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;

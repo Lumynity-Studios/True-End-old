@@ -20,7 +20,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Predicate;
 
-import static net.minecraft.world.level.block.Blocks.*;
+import static net.minecraft.world.level.block.Blocks.DIRT;
+import static net.minecraft.world.level.block.Blocks.GRASS_BLOCK;
 
 @Mixin(EatBlockGoal.class)
 public class SheepGrassEating {

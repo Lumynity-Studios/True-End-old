@@ -1,14 +1,15 @@
 package net.lumynity.true_end.config;
 
-import net.lumynity.true_end.network.Variables;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import org.apache.logging.log4j.MarkerManager;
-import org.apache.logging.log4j.Level;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.lumynity.true_end.TrueEnd;
-import java.util.Map;
+import net.lumynity.true_end.network.Variables;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.MarkerManager;
+
 import java.util.HashMap;
+import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = "true_end", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ConfigInit {

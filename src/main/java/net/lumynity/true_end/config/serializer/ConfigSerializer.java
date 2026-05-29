@@ -2,10 +2,9 @@ package net.lumynity.true_end.config.serializer;
 
 import net.minecraftforge.fml.loading.FMLPaths;
 
-import java.util.Map;
-
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
+import java.util.Map;
 
 public abstract class ConfigSerializer {
 	private final File configFile;

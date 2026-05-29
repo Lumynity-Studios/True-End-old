@@ -1,27 +1,28 @@
 package net.lumynity.true_end.mechanics.events;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.lumynity.true_end.TrueEnd;
 import net.lumynity.true_end.network.Variables;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Locale;
 import java.util.Random;
 
+import static net.lumynity.true_end.mechanics.randomEvents.TimeChange.DAY;
+import static net.lumynity.true_end.mechanics.randomEvents.TimeChange.NIGHT;
 import static net.lumynity.true_end.registries.Dimensions.BTD;
-import static net.lumynity.true_end.mechanics.randomEvents.TimeChange.*;
 
 @Mod.EventBusSubscriber
 public class ChatReplies {

@@ -1,9 +1,9 @@
 package net.lumynity.true_end.mechanics.logic;
 
 import net.lumynity.true_end.config.Config;
-import net.lumynity.true_end.registries.Packets;
 import net.lumynity.true_end.network.Variables;
 import net.lumynity.true_end.network.packets.ShowCreditsPacket;
+import net.lumynity.true_end.registries.Packets;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerEvent;

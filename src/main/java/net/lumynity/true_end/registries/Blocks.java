@@ -1,12 +1,12 @@
 package net.lumynity.true_end.registries;
 
+import net.lumynity.true_end.TrueEnd;
 import net.lumynity.true_end.content.block.*;
 import net.lumynity.true_end.content.block.Void;
-import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.world.level.block.Block;
-import net.lumynity.true_end.TrueEnd;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Blocks {
 	public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, TrueEnd.MODID);

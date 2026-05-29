@@ -1,8 +1,5 @@
 package net.lumynity.true_end.content.entity;
 
-import java.util.EnumSet;
-import java.util.Random;
-
 import net.lumynity.true_end.network.Variables;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -26,6 +23,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.EnumSet;
+import java.util.Random;
 
 public class Unknown extends AmbientCreature {
     private static final double FOLLOW_RANGE = 128;

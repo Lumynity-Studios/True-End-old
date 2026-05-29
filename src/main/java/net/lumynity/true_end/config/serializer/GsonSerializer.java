@@ -1,14 +1,13 @@
 package net.lumynity.true_end.config.serializer;
 
-import java.util.Map;
-
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.FileReader;
-
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Map;
 
 public class GsonSerializer extends ConfigSerializer {
 	private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();

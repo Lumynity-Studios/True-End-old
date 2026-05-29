@@ -1,11 +1,10 @@
 package net.lumynity.true_end.content.command.calls;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.CommandSource;
-
 import net.lumynity.true_end.TrueEnd;
+import net.minecraft.commands.CommandSource;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 
 public class BTDTest {
     public static void execute(Entity entity) {

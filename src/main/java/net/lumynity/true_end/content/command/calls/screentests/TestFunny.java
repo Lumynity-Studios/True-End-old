@@ -1,23 +1,20 @@
 package net.lumynity.true_end.content.command.calls.screentests;
 
-import net.lumynity.true_end.registries.Sounds;
-import net.minecraft.sounds.SoundSource;
-import net.minecraftforge.network.NetworkHooks;
-
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.core.BlockPos;
-
-import net.lumynity.true_end.client.gui.inventory.Funny;
-
 import io.netty.buffer.Unpooled;
+import net.lumynity.true_end.client.gui.inventory.Funny;
+import net.lumynity.true_end.registries.Sounds;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class TestFunny {

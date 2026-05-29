@@ -5,19 +5,19 @@ import net.lumynity.true_end.content.command.calls.InvFileConvert;
 import net.lumynity.true_end.content.command.calls.PrintVars;
 import net.lumynity.true_end.content.command.calls.screentests.TestBlackOverlay;
 import net.lumynity.true_end.content.command.calls.screentests.TestFunny;
-import net.lumynity.true_end.registries.Packets;
-import net.lumynity.true_end.network.packets.ShowCreditsPacket;
 import net.lumynity.true_end.mechanics.logic.PlayerInvManager;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
-
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.Entity;
+import net.lumynity.true_end.network.packets.ShowCreditsPacket;
+import net.lumynity.true_end.registries.Packets;
 import net.minecraft.commands.Commands;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import static net.lumynity.true_end.registries.Dimensions.*;
+import static net.lumynity.true_end.registries.Dimensions.BTD;
+import static net.lumynity.true_end.registries.Dimensions.NWAD;
 
 @Mod.EventBusSubscriber
 public class DeveloperCmd {
