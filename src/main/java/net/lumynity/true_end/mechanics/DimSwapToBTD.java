@@ -51,21 +51,28 @@ public class DimSwapToBTD {
     public static final int BlockPosRandomY = 128+(int) (Math.random() * ((256-128)+1));
     public static final int BlockPosRandomZ = 16+(int) (Math.random() * ((48-16)+1));
 
-    // Half-assed work-around, causes desync and shoves you back into BTD if you go through the exist portal a 2nd time and crashes the game if you die
+    // TODO: MAKE IT NOT TAKE YOU TO BTD EVERY TIME
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
-        if (!event.isWasDeath()) {
-            ServerPlayer oldPlayer = (ServerPlayer) event.getOriginal();
+        ServerPlayer oldPlayer = (ServerPlayer) event.getOriginal();
+        ServerPlayer newPlayer = (ServerPlayer) event.getEntity();
 
-            if (oldPlayer.level().dimension() == Level.END) {
-                ServerPlayer newPlayer = (ServerPlayer) event.getEntity();
+        oldPlayer.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(oldData ->
+            newPlayer.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(newData ->
+                newData.setBeenBeyond(oldData.hasBeenBeyond())));
 
+        if (!event.isWasDeath() && oldPlayer.level().dimension() == Level.END) {
+
+            newPlayer.getServer().tell(new net.minecraft.server.TickTask(1, () -> {
                 PlayerEvent.PlayerChangedDimensionEvent simulatedEvent =
                     new PlayerEvent.PlayerChangedDimensionEvent(newPlayer, Level.END, Level.OVERWORLD);
+
                 onChangeDimension(simulatedEvent);
-            }
+            }));
         }
     }
+
+
 
     @SubscribeEvent
     public static void onChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
@@ -76,7 +83,7 @@ public class DimSwapToBTD {
         TrueEnd.LOGGER.info("Logged dimension change");
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         TrueEnd.LOGGER.info("Entity is player");
-        if (!event.getFrom().equals(Level.END)) { // DOESN'T DETECT LEAVING THE END??
+        if (!event.getFrom().equals(Level.END)) { // STILL DOESN'T DETECT LEAVING THE END
             TrueEnd.LOGGER.info("Is not coming from The End");
             return;
         }
