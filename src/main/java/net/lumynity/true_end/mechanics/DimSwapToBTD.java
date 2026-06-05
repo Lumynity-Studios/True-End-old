@@ -1,33 +1,34 @@
 package net.lumynity.true_end.mechanics;
 
 import com.mojang.datafixers.util.Pair;
-import net.lumynity.true_end.TrueEnd;
 import net.lumynity.true_end.mechanics.logic.PlayerInvManager;
 import net.lumynity.true_end.network.Variables;
-import net.lumynity.true_end.registries.Blocks;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Vec3i;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerAbilitiesPacket;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import net.lumynity.true_end.registries.Blocks;
+import net.lumynity.true_end.TrueEnd;
+import net.minecraft.world.effect.MobEffectInstance;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -42,7 +43,7 @@ import static net.lumynity.true_end.registries.Dimensions.BTD;
 @Mod.EventBusSubscriber
 public class DimSwapToBTD {
     private static final Map<ServerPlayer, Boolean> HAS_PROCESSED = new HashMap<>();
-    private static final BlockPos ABSOLUTE_FALLBACK_POS = new BlockPos(0, 120, 12550832);
+    public static final BlockPos ABSOLUTE_FALLBACK_POS = new BlockPos(0, 120, 12550832);
     public static final int HOUSE_PLATEAU_WIDTH = 9;
     public static final int HOUSE_PLATEAU_LENGTH = 7;
     public static final int TERRAIN_ADAPT_EXTENSION = 10;
@@ -51,152 +52,120 @@ public class DimSwapToBTD {
     public static final int BlockPosRandomY = 128+(int) (Math.random() * ((256-128)+1));
     public static final int BlockPosRandomZ = 16+(int) (Math.random() * ((48-16)+1));
 
-    // TODO: MAKE IT NOT TAKE YOU TO BTD EVERY TIME
     @SubscribeEvent
-    public static void onPlayerClone(PlayerEvent.Clone event) {
-        ServerPlayer oldPlayer = (ServerPlayer) event.getOriginal();
-        ServerPlayer newPlayer = (ServerPlayer) event.getEntity();
+    public static void onAdvancement(AdvancementEvent event) {
+        if (event.getAdvancement().getId().equals(ResourceLocation.parse("true_end:stop_dreaming"))) {
+            Entity entity = event.getEntity();
 
-        oldPlayer.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(oldData ->
-            newPlayer.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(newData ->
-                newData.setBeenBeyond(oldData.hasBeenBeyond())));
+            if (!(entity instanceof ServerPlayer player)) return;
+            if (HAS_PROCESSED.getOrDefault(player, false)) return;
 
-        if (!event.isWasDeath() && oldPlayer.level().dimension() == Level.END) {
+            AtomicBoolean hasVisited = new AtomicBoolean(false);
+            player.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(data -> hasVisited.set(data.hasBeenBeyond()));
+            if (!hasVisited.get()) {
+                if (player.level().dimension() == Level.OVERWORLD
+                    && player.level() instanceof ServerLevel overworld
+                    && player.getAdvancements().getOrStartProgress(
+                    Objects.requireNonNull(player.server.getAdvancements()
+                        .getAdvancement(ResourceLocation.parse("true_end:stop_dreaming")))).isDone()) {
+                    HAS_PROCESSED.put(player, true);
+                    ServerLevel nextLevel = player.server.getLevel(BTD);
+                    if (nextLevel == null || player.level().dimension() == BTD) {
+                        HAS_PROCESSED.remove(player);
+                        return;
+                    }
+                    player.connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.WIN_GAME, 0));
 
-            newPlayer.getServer().tell(new net.minecraft.server.TickTask(1, () -> {
-                PlayerEvent.PlayerChangedDimensionEvent simulatedEvent =
-                    new PlayerEvent.PlayerChangedDimensionEvent(newPlayer, Level.END, Level.OVERWORLD);
-
-                onChangeDimension(simulatedEvent);
-            }));
-        }
-    }
-
-
-
-    @SubscribeEvent
-    public static void onChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-        // DEAR DEVELOPER, WHEN WE WROTE THIS CODE ONLY WE AND GOD KNEW HOW IT WORKED
-        // NOW ONLY GOD KNOW HOW IT WORKED BECAUSE IT'S BEEN OVER A YEAR AFTER WE'VE WRITTEN AND FORGOTTEN ABOUT IT,
-        // IT IS PURE SCUFF AND AMATEUR WORK AS WE WEREN'T AS EXPERIENCED AT THE TIME
-        // ANY CHANGE MAY RESULT IN THE WHOLE THING JUST SHITTING ITSELF
-        TrueEnd.LOGGER.info("Logged dimension change");
-        if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        TrueEnd.LOGGER.info("Entity is player");
-        if (!event.getFrom().equals(Level.END)) { // STILL DOESN'T DETECT LEAVING THE END
-            TrueEnd.LOGGER.info("Is not coming from The End");
-            return;
-        }
-        TrueEnd.LOGGER.info("Is coming from The End");
-
-        AtomicBoolean hasVisited = new AtomicBoolean(false);
-        player.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(data -> hasVisited.set(data.hasBeenBeyond()));
-        if (hasVisited.get()) {
-            TrueEnd.LOGGER.info("Has been beyond");
-            return;
-        };
-        TrueEnd.LOGGER.info("Hasn't been beyond");
-
-        if (HAS_PROCESSED.getOrDefault(player, false)) return;
-
-        if (player.level() instanceof ServerLevel) {
-            HAS_PROCESSED.put(player, true);
-            ServerLevel nextLevel = player.server.getLevel(BTD);
-            if (nextLevel == null || player.level().dimension() == BTD) {
-                HAS_PROCESSED.remove(player);
-                return;
-            }
-            player.connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.WIN_GAME, 0));
-
-            Variables.MapVariables getVariable = Variables.MapVariables.get(nextLevel);
-            double btdSpawnX = getVariable.getBtdSpawnX();
-            double btdSpawnY = getVariable.getBtdSpawnY();
-            double btdSpawnZ = getVariable.getBtdSpawnZ();
-            if (btdSpawnY > 0) {
-                player.teleportTo(nextLevel, btdSpawnX, btdSpawnY, btdSpawnZ, 0, 0);
-                player.connection.send(new ClientboundPlayerAbilitiesPacket(player.getAbilities()));
-                for (MobEffectInstance effect : player.getActiveEffects())
-                    player.connection.send(new ClientboundUpdateMobEffectPacket(player.getId(), effect));
-                sendFirstEntryConversation(player);
-                executeCommand(nextLevel, player, "function true_end:spawn/global_spawn");
-                player.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(data -> data.setBeenBeyond(true));
-                HAS_PROCESSED.remove(player);
-                if (Variables.clearDreamItems) {
-                    PlayerInvManager.saveInvBTD(player);
-                    PlayerInvManager.clearAccessories(player);
-                    player.getInventory().clearContent();
-                    player.getInventory().setChanged();
-                }
-                return;
-            }
-
-            TrueEnd.wait(4, () -> {
-                ServerLevel overworld = player.server.getLevel(Level.OVERWORLD);
-                BlockPos worldSpawn = overworld.getSharedSpawnPos();
-                BlockPos initialSearchPos = locateBiome(nextLevel, worldSpawn, "true_end:plains");
-                if (initialSearchPos == null) initialSearchPos = worldSpawn;
-
-                BlockPos spawnPos = findSpawn(nextLevel, initialSearchPos);
-                BlockPos secondarySearchPos = locateBiome(nextLevel,
-                    new BlockPos(new Vec3i(BlockPosRandomX, BlockPosRandomY, BlockPosRandomZ)), "true_end:plains");
-
-                if (spawnPos == null) {
-                    for (int i = 0; i <= MAX_FALLBACK_SEARCH_TRIES; i++) {
-                        secondarySearchPos = new BlockPos(new Vec3i(BlockPosRandomX+BlockPosRandomZ,
-                            BlockPosRandomY,
-                            BlockPosRandomZ+BlockPosRandomX));
-
-                        spawnPos = fallbackSpawn(nextLevel, secondarySearchPos);
-                        if (spawnPos != null) {
-                            break;
+                    Variables.MapVariables getVariable = Variables.MapVariables.get(nextLevel);
+                    double btdSpawnX = getVariable.getBtdSpawnX();
+                    double btdSpawnY = getVariable.getBtdSpawnY();
+                    double btdSpawnZ = getVariable.getBtdSpawnZ();
+                    if (btdSpawnY > 0) {
+                        player.teleportTo(nextLevel, btdSpawnX, btdSpawnY, btdSpawnZ, 0, 0);
+                        player.connection.send(new ClientboundPlayerAbilitiesPacket(player.getAbilities()));
+                        for (MobEffectInstance effect : player.getActiveEffects())
+                            player.connection.send(new ClientboundUpdateMobEffectPacket(player.getId(), effect));
+                        sendFirstEntryConversation(player);
+                        executeCommand(nextLevel, player, "function true_end:spawn/global_spawn");
+                        player.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(data -> data.setBeenBeyond(true));
+                        HAS_PROCESSED.remove(player);
+                        if (Variables.clearDreamItems) {
+                            PlayerInvManager.saveInvBTD(player);
+                            PlayerInvManager.clearAccessories(player);
+                            player.getInventory().clearContent();
+                            player.getInventory().setChanged();
                         }
+                        return;
                     }
+
+                    TrueEnd.wait(4, () -> {
+                        BlockPos worldSpawn = overworld.getSharedSpawnPos();
+                        BlockPos initialSearchPos = locateBiome(nextLevel, worldSpawn, "true_end:plains");
+                        if (initialSearchPos == null) initialSearchPos = worldSpawn;
+
+                        BlockPos spawnPos = findSpawn(nextLevel, initialSearchPos);
+                        BlockPos secondarySearchPos = locateBiome(nextLevel,
+                            new BlockPos(new Vec3i(BlockPosRandomX, BlockPosRandomY, BlockPosRandomZ)), "true_end:plains");
+
+                        if (spawnPos == null) {
+                            for (int i = 0; i <= MAX_FALLBACK_SEARCH_TRIES; i++) {
+                                secondarySearchPos = new BlockPos(new Vec3i(BlockPosRandomX+BlockPosRandomZ,
+                                    BlockPosRandomY,
+                                    BlockPosRandomZ+BlockPosRandomX));
+
+                                spawnPos = fallbackSpawn(nextLevel, secondarySearchPos);
+                                if (spawnPos != null) {
+                                    break;
+                                }
+                            }
+                        }
+
+                        boolean adaptTerrain;
+                        boolean absoluteFallbackPlatform;
+                        if (spawnPos == null) {
+                            adaptTerrain = false;
+                            absoluteFallbackPlatform = true;
+                            spawnPos = ABSOLUTE_FALLBACK_POS;
+                        } else {
+                            adaptTerrain = true;
+                            absoluteFallbackPlatform = false;
+                        }
+                        BlockPos finalSpawnPos = spawnPos;
+                        BlockPos secFinalSpawnPos = secondarySearchPos;
+
+                        player.teleportTo(nextLevel, spawnPos.getX()+0.5, spawnPos.getY(), spawnPos.getZ()+0.5, player.getYRot(), player.getXRot());
+                        player.connection.send(new ClientboundPlayerAbilitiesPacket(player.getAbilities()));
+                        for (MobEffectInstance effect : player.getActiveEffects())
+                            player.connection.send(new ClientboundUpdateMobEffectPacket(player.getId(), effect));
+
+                        TrueEnd.wait(4, () -> {
+                            if (absoluteFallbackPlatform)
+                                executeCommand(nextLevel, player, "function true_end:spawn/farlands_spawn");
+                            if (adaptTerrain) adaptTerrain(nextLevel, player.blockPosition());
+                            removeNearbyTrees(nextLevel, player.blockPosition(), 15);
+                            executeCommand(nextLevel, player, "function true_end:home/build_home");
+                            setGlobalSpawn(nextLevel, player);
+                            sendFirstEntryConversation(player);
+                            player.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(data -> data.setBeenBeyond(true));
+                            if (secFinalSpawnPos == null) {
+                                nextLevel.getCapability(Variables.MAP_VARIABLES_CAP).ifPresent(
+                                    data -> data.setBtdSpawn(finalSpawnPos.getX(), finalSpawnPos.getY()-1, finalSpawnPos.getZ()));
+                            } else {
+                                nextLevel.getCapability(Variables.MAP_VARIABLES_CAP).ifPresent(
+                                    data -> data.setBtdSpawn(secFinalSpawnPos.getX(), secFinalSpawnPos.getY()-1, secFinalSpawnPos.getZ()));
+                            }
+                            HAS_PROCESSED.remove(player);
+                        });
+
+                        if (Variables.clearDreamItems) {
+                            PlayerInvManager.saveInvBTD(player);
+                            PlayerInvManager.clearAccessories(player);
+                            player.getInventory().clearContent();
+                            player.getInventory().setChanged();
+                        }
+                    });
                 }
-
-                boolean adaptTerrain;
-                boolean absoluteFallbackPlatform;
-                if (spawnPos == null) {
-                    adaptTerrain = false;
-                    absoluteFallbackPlatform = true;
-                    spawnPos = ABSOLUTE_FALLBACK_POS;
-                } else {
-                    adaptTerrain = true;
-                    absoluteFallbackPlatform = false;
-                }
-                BlockPos finalSpawnPos = spawnPos;
-                BlockPos secFinalSpawnPos = secondarySearchPos;
-
-                player.teleportTo(nextLevel, spawnPos.getX()+0.5, spawnPos.getY(), spawnPos.getZ()+0.5, player.getYRot(), player.getXRot());
-                player.connection.send(new ClientboundPlayerAbilitiesPacket(player.getAbilities()));
-                for (MobEffectInstance effect : player.getActiveEffects())
-                    player.connection.send(new ClientboundUpdateMobEffectPacket(player.getId(), effect));
-
-                TrueEnd.wait(4, () -> {
-                    if (absoluteFallbackPlatform)
-                        executeCommand(nextLevel, player, "function true_end:spawn/farlands_spawn");
-                    if (adaptTerrain) adaptTerrain(nextLevel, player.blockPosition());
-                    removeNearbyTrees(nextLevel, player.blockPosition(), 15);
-                    executeCommand(nextLevel, player, "function true_end:home/build_home");
-                    setGlobalSpawn(nextLevel, player);
-                    sendFirstEntryConversation(player);
-                    player.getCapability(Variables.PLAYER_VARS_CAP).ifPresent(data -> data.setBeenBeyond(true));
-                    if (secFinalSpawnPos == null) {
-                        nextLevel.getCapability(Variables.MAP_VARIABLES_CAP).ifPresent(
-                            data -> data.setBtdSpawn(finalSpawnPos.getX(), finalSpawnPos.getY()-1, finalSpawnPos.getZ()));
-                    } else {
-                        nextLevel.getCapability(Variables.MAP_VARIABLES_CAP).ifPresent(
-                            data -> data.setBtdSpawn(secFinalSpawnPos.getX(), secFinalSpawnPos.getY()-1, secFinalSpawnPos.getZ()));
-                    }
-                    HAS_PROCESSED.remove(player);
-                });
-
-                if (Variables.clearDreamItems) {
-                    PlayerInvManager.saveInvBTD(player);
-                    PlayerInvManager.clearAccessories(player);
-                    player.getInventory().clearContent();
-                    player.getInventory().setChanged();
-                }
-            });
+            }
         }
     }
 
